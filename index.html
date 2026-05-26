@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global Logistics Empire</title>
-  <meta name="description" content="Global Logistics Empire is a transport and logistics simulation game focused on building routes, expanding fleets, and growing a worldwide business." />
+  <title>Global Logistics Empire — Build a Worldwide Transport Tycoon</title>
+  <meta name="description" content="Global Logistics Empire is a deep tycoon & logistics simulation. Manage trucks, trains, ships and planes, hire staff, research tech, build infrastructure and grow from a single garage to a global empire." />
   <style>
     :root{
       --bg:#08111f;
@@ -18,6 +18,8 @@
       --primary-dark:#0ea5e9;
       --green:#22c55e;
       --gold:#f59e0b;
+      --red:#ef4444;
+      --purple:#a78bfa;
       --shadow:0 20px 60px rgba(0,0,0,.35);
       --radius:24px;
       --radius-sm:16px;
@@ -50,7 +52,8 @@
     .hero-box,
     .info-box,
     .card,
-    .cta-box{
+    .cta-box,
+    .big-card{
       background:rgba(19,39,66,.78);
       border:1px solid var(--line);
       border-radius:var(--radius);
@@ -74,13 +77,13 @@
     }
 
     h1{
-      font-size:clamp(2.8rem, 5vw, 5.2rem);
-      line-height:1.02;
+      font-size:clamp(2.4rem, 5vw, 4.6rem);
+      line-height:1.04;
       letter-spacing:-0.04em;
       margin-bottom:16px;
     }
 
-    .hero-box p{
+    .hero-box p.lead{
       color:var(--muted);
       font-size:1.08rem;
       max-width:62ch;
@@ -152,18 +155,19 @@
       color:var(--text);
     }
 
-    section{padding:0 0 28px}
+    section{padding:36px 0}
 
     .section-head{
       text-align:center;
       max-width:760px;
-      margin:0 auto 24px;
+      margin:0 auto 28px;
     }
 
     .section-head h2{
-      font-size:clamp(1.9rem, 3vw, 2.8rem);
+      font-size:clamp(1.9rem, 3vw, 2.6rem);
       margin-bottom:10px;
       color:var(--text);
+      letter-spacing:-0.02em;
     }
 
     .section-head p{color:var(--muted)}
@@ -173,6 +177,8 @@
       grid-template-columns:repeat(3,1fr);
       gap:18px;
     }
+    .cards.two{grid-template-columns:repeat(2,1fr)}
+    .cards.four{grid-template-columns:repeat(4,1fr)}
 
     .card{padding:24px}
 
@@ -189,38 +195,88 @@
     .icon.blue{background:rgba(83,199,255,.14);color:var(--primary)}
     .icon.green{background:rgba(34,197,94,.14);color:var(--green)}
     .icon.gold{background:rgba(245,158,11,.14);color:var(--gold)}
+    .icon.red{background:rgba(239,68,68,.14);color:var(--red)}
+    .icon.purple{background:rgba(167,139,250,.14);color:var(--purple)}
 
     .card h3{
       margin-bottom:10px;
       font-size:1.14rem;
       color:var(--text);
     }
+    .card p{color:var(--muted);font-size:.97rem}
+    .card ul{margin-top:10px;padding-left:18px;color:var(--muted);font-size:.95rem}
+    .card ul li{margin:4px 0}
 
-    .card p{
-      color:var(--muted);
-      font-size:.97rem;
+    .big-card{padding:32px}
+    .big-card h3{font-size:1.4rem;margin-bottom:12px}
+    .big-card p{color:var(--muted)}
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
     }
+
+    .fleet-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:6px;
+    }
+    .fleet{
+      padding:18px;
+      border-radius:var(--radius-sm);
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+    .fleet .em{font-size:2rem;display:block;margin-bottom:6px}
+    .fleet b{display:block;color:var(--text);font-size:1rem;margin-bottom:4px}
+    .fleet span{color:var(--muted);font-size:.88rem}
+
+    .numbers{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:8px;
+    }
+    .num{
+      text-align:center;
+      padding:18px;
+      border-radius:var(--radius-sm);
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .num strong{
+      display:block;
+      font-size:1.8rem;
+      color:var(--primary);
+      letter-spacing:-.02em;
+    }
+    .num span{color:var(--muted);font-size:.9rem}
 
     .cta-box{
       padding:30px;
       background:linear-gradient(135deg, rgba(83,199,255,.10), rgba(34,197,94,.08));
+      text-align:center;
     }
 
     .tag-list{
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
+      gap:10px;
       margin-top:18px;
+      justify-content:center;
     }
 
     .tag{
-      padding:10px 14px;
+      padding:8px 14px;
       border-radius:999px;
       background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.08);
       color:var(--text);
       font-weight:700;
-      font-size:.95rem;
+      font-size:.92rem;
     }
 
     footer{padding:40px 0 60px}
@@ -232,151 +288,407 @@
       border-radius:24px;
       padding:24px;
     }
-
-    .footer-box strong{
-      display:block;
-      color:var(--text);
-      margin-bottom:6px;
-    }
+    .footer-box strong{display:block;color:var(--text);margin-bottom:6px}
 
     @media (max-width: 920px){
       .hero,
-      .cards{
+      .cards,
+      .cards.two,
+      .cards.four,
+      .grid-2,
+      .fleet-grid,
+      .numbers{
         grid-template-columns:1fr;
       }
-
+      .cards.four{grid-template-columns:repeat(2,1fr)}
+      .fleet-grid{grid-template-columns:repeat(2,1fr)}
+      .numbers{grid-template-columns:repeat(2,1fr)}
       header{padding:46px 0 34px}
-      .hero-box,
-      .info-box,
-      .card,
-      .cta-box{padding:22px}
+      .hero-box,.info-box,.card,.cta-box,.big-card{padding:22px}
       .stats{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap hero">
-      <div class="hero-box">
-        <div class="eyebrow">Transport & Logistics Simulation</div>
-        <h1>Build your own global freight empire.</h1>
-        <p>
-          Global Logistics Empire is a business and transport simulation game where you expand routes,
-          manage fleets, optimize deliveries, and grow from a small company into a worldwide logistics powerhouse.
-        </p>
-        <div class="buttons">
-          <a href="#features" class="btn btn-primary">Explore Features</a>
-          <a href="#platforms" class="btn btn-secondary">Available Platforms</a>
-        </div>
-      </div>
 
-      <div class="info-box">
-        <h2>Game Focus</h2>
-        <p>Designed for players who enjoy tycoon, transport, optimization, and long-term business growth.</p>
-        <div class="stats">
-          <div class="stat">
-            <span>Core theme</span>
-            <strong>Logistics strategy</strong>
+  <!-- HERO -->
+  <header>
+    <div class="wrap">
+      <div class="hero">
+        <div class="hero-box">
+          <span class="eyebrow">🌍 Transport & Logistics Tycoon</span>
+          <h1>Build your own global freight empire.</h1>
+          <p class="lead">
+            <strong>Global Logistics Empire</strong> is a deep logistics & business simulation.
+            Start in a small garage with a single van and grow into a worldwide operator running
+            trucks, trains, cargo ships and aircraft across multiple continents. Hire staff, research
+            new tech, build depots, run contracts, and turn delivery routes into a profitable empire.
+          </p>
+          <div class="buttons">
+            <a href="#features" class="btn btn-primary">Explore Features</a>
+            <a href="#fleet" class="btn btn-secondary">See the Fleet</a>
           </div>
-          <div class="stat">
-            <span>Gameplay</span>
-            <strong>Fleet management</strong>
-          </div>
-          <div class="stat">
-            <span>Progression</span>
-            <strong>Business expansion</strong>
-          </div>
-          <div class="stat">
-            <span>Style</span>
-            <strong>Tycoon simulation</strong>
+        </div>
+
+        <div class="info-box">
+          <h2>Game Focus</h2>
+          <p>Designed for players who enjoy tycoon, transport, optimization and long-term business growth.</p>
+          <div class="stats">
+            <div class="stat"><span>Core theme</span><strong>Logistics strategy</strong></div>
+            <div class="stat"><span>Gameplay</span><strong>Fleet management</strong></div>
+            <div class="stat"><span>Progression</span><strong>Garage → empire</strong></div>
+            <div class="stat"><span>Style</span><strong>Tycoon simulation</strong></div>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <main>
-    <section id="features">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>What the game offers</h2>
-          <p>Grow, optimize, and dominate the logistics market with systems focused on planning, efficiency, and expansion.</p>
+  <!-- KEY NUMBERS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The game in numbers</h2>
+        <p>A massive amount of content to plan, upgrade, unlock and master.</p>
+      </div>
+      <div class="numbers">
+        <div class="num"><strong>4</strong><span>Transport modes</span></div>
+        <div class="num"><strong>33</strong><span>Vehicle upgrade levels</span></div>
+        <div class="num"><strong>10</strong><span>Infrastructure tiers</span></div>
+        <div class="num"><strong>90+</strong><span>Achievements</span></div>
+        <div class="num"><strong>24</strong><span>Supported languages</span></div>
+        <div class="num"><strong>1×–8×</strong><span>Game speed</span></div>
+        <div class="num"><strong>3+1</strong><span>Save slots</span></div>
+        <div class="num"><strong>∞</strong><span>Procedural contracts</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLEET -->
+  <section id="fleet">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Four transport modes, one global network</h2>
+        <p>Every mode has its own physics, costs, capacity and routing — and they all work together.</p>
+      </div>
+
+      <div class="fleet-grid">
+        <div class="fleet"><span class="em">🚚</span><b>Road</b><span>Vans, trucks, heavy haulers, electric & diesel variants, trailer attachments</span></div>
+        <div class="fleet"><span class="em">🚂</span><b>Rail</b><span>Freight locomotives — diesel and electric — with cargo wagon attachments</span></div>
+        <div class="fleet"><span class="em">🚢</span><b>Maritime</b><span>Coastal ships and ocean-going cargo vessels for high-volume routes</span></div>
+        <div class="fleet"><span class="em">✈️</span><b>Air</b><span>Cargo aircraft for fast, premium and long-haul global deliveries</span></div>
+      </div>
+
+      <div style="margin-top:18px" class="big-card">
+        <h3>Volume-based logistics (m³)</h3>
+        <p>Cargo is handled by real <b>volume in cubic meters</b>, not by tonnage. Each vehicle has its own capacity, fuel/energy type (diesel, electric, urea) and consumption per kilometre. Distances are calculated through a real road/rail/sea/air network using a Dijkstra routing engine with regional connectivity — including <b>ferry surcharges</b> when land vehicles must cross water.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT THE GAME OFFERS -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What the game offers</h2>
+        <p>Dozens of interlocking systems: contracts, fleet, staff, research, infrastructure, events and economy.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon blue">📋</div>
+          <h3>Contract system</h3>
+          <p>Pick deliveries from a board of <b>6 contract slots</b>, accept manually or in bulk, and watch your reputation climb (cap 10,000).</p>
+          <ul>
+            <li>Feasibility checks against your fleet</li>
+            <li>Premium locations unlock at 200 reputation</li>
+            <li>Special contracts: +30% payout & +1 gem</li>
+            <li>Daily challenges & timed special jobs</li>
+          </ul>
         </div>
 
-        <div class="cards">
-          <div class="card">
-            <div class="icon blue">🚚</div>
-            <h3>Fleet Growth</h3>
-            <p>Start small and gradually build a larger transport network with more vehicles, better routes, and increased capacity.</p>
-          </div>
+        <div class="card">
+          <div class="icon green">🗺️</div>
+          <h3>Living world map</h3>
+          <p>Interactive Leaflet-based world with CARTO dark tiles, custom Dijkstra routing and animated vehicles travelling in real time.</p>
+          <ul>
+            <li>One-finger pan, pinch-to-zoom on mobile</li>
+            <li>Regional & inter-continental routes</li>
+            <li>Repositioning → loading → transport phases</li>
+          </ul>
+        </div>
 
-          <div class="card">
-            <div class="icon green">📦</div>
-            <h3>Cargo Management</h3>
-            <p>Handle shipments, assign resources, and keep deliveries moving smoothly across your growing business.</p>
-          </div>
-
-          <div class="card">
-            <div class="icon gold">🌍</div>
-            <h3>Empire Expansion</h3>
-            <p>Unlock new regions, improve profitability, and turn a local operation into a global logistics empire.</p>
-          </div>
+        <div class="card">
+          <div class="icon gold">💰</div>
+          <h3>Deep economy</h3>
+          <p>Manage cash, loans, fuel, urea, electricity, vehicle wear, salaries, ad bonuses and global events affecting prices.</p>
+          <ul>
+            <li>Dynamic events (war, fuel crisis, booms…)</li>
+            <li>Reputation curve with diminishing returns</li>
+            <li>Scaling salary & maintenance costs</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <div class="wrap cta-box">
-        <div class="section-head" style="text-align:left;max-width:none;margin:0 0 12px">
-          <h2 style="margin-bottom:8px">Built for tycoon players</h2>
-          <p>If you enjoy management games, route planning, efficiency upgrades, and watching your business grow, this game is for you.</p>
+  <!-- VEHICLE UPGRADES -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Vehicle customization & upgrades</h2>
+        <p>Every vehicle is an individual asset — name it, paint it, upgrade it, attach trailers and keep it running.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="big-card">
+          <div class="icon blue">🛠️</div>
+          <h3>Up to Level 33 upgrades</h3>
+          <p>Improve speed, capacity, fuel efficiency and special capabilities. Cost multipliers scale per transport mode, so end-game upgrades are real investments.</p>
+          <ul style="margin-top:10px;padding-left:18px;color:var(--muted)">
+            <li>Capability tags unlock special contracts (refrigerated, hazmat, oversized…)</li>
+            <li>Mode-specific attachments: trailers, wagons, containers</li>
+            <li>Energy variants — the 2nd model in road/rail groups is fully electric</li>
+          </ul>
         </div>
 
+        <div class="big-card">
+          <div class="icon red">🔧</div>
+          <h3>Wear & maintenance</h3>
+          <p>Vehicles wear down with use. Managers can auto-repair when wear drops below 30%, and ad-rewards let free players keep fleets healthy.</p>
+          <ul style="margin-top:10px;padding-left:18px;color:var(--muted)">
+            <li>22 SVG shapes, colour-coded by transport mode</li>
+            <li>Custom names & emoji prefixes for identification</li>
+            <li>Strict <code>instanceId</code> identity — no ghost vehicles</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPLOYEES & DISPATCHER -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Employees, managers & the dispatcher</h2>
+        <p>You can't run a global empire alone — hire specialists and let them automate the boring parts.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon purple">👷</div>
+          <h3>Specialized staff</h3>
+          <p>Dispatch is <b>gated by specialized staff</b> — you need the right people to send a truck, train, ship or plane on its way.</p>
+          <ul>
+            <li>Persistent assignment to vehicles</li>
+            <li>Fatigue mechanics: +3% active, −10% rest</li>
+            <li>Scaling salaries based on experience</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="icon blue">🧠</div>
+          <h3>Managers with skill upgrades</h3>
+          <p>Hire managers and level up their skills — every buff is computed centrally so stacking bonuses always behave correctly.</p>
+          <ul>
+            <li>Payout bonuses, faster contracts, cheaper repairs</li>
+            <li>Auto-repair & auto-refuel thresholds</li>
+            <li>Training & passive bonus stacking</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="icon green">🤖</div>
+          <h3>The Dispatcher</h3>
+          <p>The Dispatcher is a premium automation employee that runs your contract board for you, choosing the most profitable jobs that your fleet can actually fulfil.</p>
+          <ul>
+            <li>Free players: 3 vehicles per bulk-accept click</li>
+            <li>Premium: 10 per click, up to 54h auto-dispatch</li>
+            <li>Temporary boosts purchasable with gems (6h/12h/24h)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH & BUILDINGS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Research & infrastructure</h2>
+        <p>Unlock advanced features through research, then physically build out your operation.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="big-card">
+          <div class="icon gold">🧪</div>
+          <h3>Research tree</h3>
+          <p>Research is <b>mandatory</b> to unlock bulk dispatch, auto features, premium contract generation and advanced logistics tooling. Every project costs time and money — pick your priorities.</p>
+          <ul style="margin-top:10px;padding-left:18px;color:var(--muted)">
+            <li>Automation research (bulk accept, auto-dispatch)</li>
+            <li>Vehicle capability unlocks</li>
+            <li>Premium contract generator with nested % controls</li>
+            <li>Logistics optimisation & routing improvements</li>
+          </ul>
+        </div>
+
+        <div class="big-card">
+          <div class="icon green">🏗️</div>
+          <h3>Build up to Level 10 infrastructure</h3>
+          <p>Construct and upgrade depots, garages, workshops, fuel stations, warehouses and logistics hubs. Each building gives <b>flat and percentage bonuses</b> that stack with managers and research.</p>
+          <ul style="margin-top:10px;padding-left:18px;color:var(--muted)">
+            <li>Increased fleet capacity & contract slots</li>
+            <li>Cheaper fuel, faster repairs, better payouts</li>
+            <li>Regional unlocks for premium contracts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- META SYSTEMS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Progression, rewards & live ops</h2>
+        <p>Long-term goals that keep the empire growing for hundreds of hours.</p>
+      </div>
+
+      <div class="cards four">
+        <div class="card">
+          <div class="icon gold">🏆</div>
+          <h3>90+ achievements</h3>
+          <p>Tiered milestones with scaling rewards, claim-on-click design and cosmetic unlocks.</p>
+        </div>
+        <div class="card">
+          <div class="icon blue">🎖️</div>
+          <h3>Badges & titles</h3>
+          <p>Cosmetic progression — show off your status with collectible badges and player titles.</p>
+        </div>
+        <div class="card">
+          <div class="icon green">📅</div>
+          <h3>Daily login & challenges</h3>
+          <p>UTC reset streaks, daily challenges with a guaranteed 2-gem reward, and double rewards for Premium.</p>
+        </div>
+        <div class="card">
+          <div class="icon purple">🌐</div>
+          <h3>Global events</h3>
+          <p>Dynamic real-time modifiers (war, fuel crisis, holiday boom…) reshape the economy on the fly.</p>
+        </div>
+        <div class="card">
+          <div class="icon red">⛽</div>
+          <h3>Resource management</h3>
+          <p>Diesel, electricity and urea consumption with dedicated upgrades and storage.</p>
+        </div>
+        <div class="card">
+          <div class="icon blue">💎</div>
+          <h3>Gems economy</h3>
+          <p>Premium currency for instant completes, unlocks, dispatcher boosts and cosmetic perks.</p>
+        </div>
+        <div class="card">
+          <div class="icon gold">⭐</div>
+          <h3>Premium pass</h3>
+          <p>+10% payout, ad-free play, free contract rejects and up to 54h auto-dispatch.</p>
+        </div>
+        <div class="card">
+          <div class="icon green">💾</div>
+          <h3>Cloud save</h3>
+          <p>Google Cloud sync across devices with strict conflict detection so you never lose progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIP FLOW -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How a delivery actually works</h2>
+        <p>The simulation engine ticks every <b>5 in-game minutes</b> and supports 1×–8× speed.</p>
+      </div>
+
+      <div class="cards four">
+        <div class="card">
+          <div class="icon blue">1️⃣</div>
+          <h3>Accept</h3>
+          <p>Pick a contract from the board (manually or via the Dispatcher). Feasibility is checked against your fleet.</p>
+        </div>
+        <div class="card">
+          <div class="icon gold">2️⃣</div>
+          <h3>Reposition</h3>
+          <p>The assigned vehicle drives from its current location to the pickup city — consuming fuel along the way.</p>
+        </div>
+        <div class="card">
+          <div class="icon green">3️⃣</div>
+          <h3>Load & transport</h3>
+          <p>A fixed 0.5h loading phase, then the cargo is hauled along the routed network in real-time.</p>
+        </div>
+        <div class="card">
+          <div class="icon purple">4️⃣</div>
+          <h3>Deliver & earn</h3>
+          <p>Payment, reputation (+0.4 base), wear, employee fatigue and offline catch-up are all settled.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH / PLATFORMS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Built for mobile, ready for the world</h2>
+        <p>Native Android via Capacitor, with a PWA fallback and full localization.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon blue">📱</div>
+          <h3>Mobile-first UI</h3>
+          <p>Safe-area insets, <code>100dvh</code> layouts, disabled double-tap zoom, native AdMob banner sizing and gesture-friendly map controls.</p>
+        </div>
+        <div class="card">
+          <div class="icon green">🌐</div>
+          <h3>24 languages</h3>
+          <p>EN, CS, DE, FR, ES, IT, NL, PL, HU, RO, UA, RU, PT-BR, TR, ID, AR, SV, NO, DA, FI, JA, KO, HI, PK — with safe placeholder interpolation.</p>
+        </div>
+        <div class="card">
+          <div class="icon gold">🔒</div>
+          <h3>Safe saves</h3>
+          <p>Base64-obfuscated saves with FNV-1a hash, tamper detection, 3 manual slots + 1 autosave, forced saves on every purchase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAGS -->
+  <section>
+    <div class="wrap">
+      <div class="cta-box">
+        <h2 style="font-size:1.6rem;margin-bottom:8px">Built for tycoon players</h2>
+        <p style="color:var(--muted)">If you enjoy route planning, efficiency upgrades and watching a business grow, this game is for you.</p>
         <div class="tag-list">
           <span class="tag">Transport routes</span>
+          <span class="tag">Fleet management</span>
           <span class="tag">Business upgrades</span>
           <span class="tag">Operational planning</span>
           <span class="tag">Progressive expansion</span>
           <span class="tag">Tycoon gameplay</span>
+          <span class="tag">Offline progress</span>
+          <span class="tag">Cloud save</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="platforms">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Platforms</h2>
-          <p>This website works well as the official GitHub Pages landing page for the game, including future store links and promotion.</p>
-        </div>
-
-        <div class="cards">
-          <div class="card">
-            <div class="icon blue">📱</div>
-            <h3>Mobile Friendly</h3>
-            <p>The design is responsive and looks good on phones, tablets, and desktop screens.</p>
-          </div>
-
-          <div class="card">
-            <div class="icon green">⚡</div>
-            <h3>Fast Loading</h3>
-            <p>Single-file structure keeps the page simple, lightweight, and easy to maintain on GitHub Pages.</p>
-          </div>
-
-          <div class="card">
-            <div class="icon gold">🔗</div>
-            <h3>Store Ready</h3>
-            <p>You can later add Google Play and App Store buttons, screenshots, trailer links, or update notes.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
+  <!-- FOOTER -->
   <footer>
-    <div class="wrap footer-box">
-      <strong>Global Logistics Empire</strong>
-      Official project website hosted on GitHub Pages.
+    <div class="wrap">
+      <div class="footer-box">
+        <strong>Global Logistics Empire</strong>
+        Official project website hosted on GitHub Pages.
+      </div>
     </div>
   </footer>
+
 </body>
 </html>
