@@ -4,134 +4,379 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Global Logistics Empire</title>
+  <meta name="description" content="Global Logistics Empire is a transport and logistics simulation game focused on building routes, expanding fleets, and growing a worldwide business." />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 860px;
-      margin: 40px auto;
-      padding: 0 20px;
-      color: #222;
-      line-height: 1.7;
+    :root{
+      --bg:#08111f;
+      --bg-soft:#0f1d33;
+      --surface:#132742;
+      --surface-2:#183455;
+      --line:rgba(255,255,255,0.08);
+      --text:#eef4ff;
+      --muted:#abc0d8;
+      --primary:#53c7ff;
+      --primary-dark:#0ea5e9;
+      --green:#22c55e;
+      --gold:#f59e0b;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1140px;
     }
-    h1 { color: #1a1a2e; }
-    h2 { color: #16213e; margin-top: 36px; }
-    .languages {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0;
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      color:var(--text);
+      line-height:1.65;
+      background:
+        radial-gradient(circle at top left, rgba(83,199,255,.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(245,158,11,.10), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, #0b1627 100%);
     }
-    .lang-badge {
-      background: #e8f0fe;
-      color: #1a73e8;
-      border-radius: 4px;
-      padding: 4px 10px;
-      font-size: 0.9em;
+
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(var(--max), calc(100% - 32px));margin:0 auto}
+
+    header{padding:72px 0 54px}
+    .hero{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:28px;
+      align-items:center;
     }
-    .coming-soon {
-      background: #fff8e1;
-      border-left: 4px solid #f9a825;
-      padding: 14px 18px;
-      border-radius: 4px;
-      margin-top: 20px;
+
+    .hero-box,
+    .info-box,
+    .card,
+    .cta-box{
+      background:rgba(19,39,66,.78);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
     }
-    footer {
-      margin-top: 60px;
-      font-size: 0.85em;
-      color: #888;
+
+    .hero-box{padding:34px}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(83,199,255,.12);
+      color:var(--primary);
+      border:1px solid rgba(83,199,255,.20);
+      font-weight:700;
+      font-size:.92rem;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(2.8rem, 5vw, 5.2rem);
+      line-height:1.02;
+      letter-spacing:-0.04em;
+      margin-bottom:16px;
+    }
+
+    .hero-box p{
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width:62ch;
+    }
+
+    .buttons{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:26px;
+    }
+
+    .btn{
+      min-height:48px;
+      padding:0 20px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      transition:transform .2s ease, background .2s ease;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color:#04111e;
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--text);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .info-box{padding:26px}
+    .info-box h2{
+      font-size:1.3rem;
+      margin-bottom:8px;
+      color:var(--text);
+    }
+    .info-box p{color:var(--muted)}
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .stat{
+      padding:16px;
+      border-radius:var(--radius-sm);
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .stat span{
+      display:block;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .stat strong{
+      display:block;
+      margin-top:6px;
+      font-size:1.08rem;
+      color:var(--text);
+    }
+
+    section{padding:0 0 28px}
+
+    .section-head{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 24px;
+    }
+
+    .section-head h2{
+      font-size:clamp(1.9rem, 3vw, 2.8rem);
+      margin-bottom:10px;
+      color:var(--text);
+    }
+
+    .section-head p{color:var(--muted)}
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card{padding:24px}
+
+    .icon{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-size:1.5rem;
+      margin-bottom:14px;
+    }
+
+    .icon.blue{background:rgba(83,199,255,.14);color:var(--primary)}
+    .icon.green{background:rgba(34,197,94,.14);color:var(--green)}
+    .icon.gold{background:rgba(245,158,11,.14);color:var(--gold)}
+
+    .card h3{
+      margin-bottom:10px;
+      font-size:1.14rem;
+      color:var(--text);
+    }
+
+    .card p{
+      color:var(--muted);
+      font-size:.97rem;
+    }
+
+    .cta-box{
+      padding:30px;
+      background:linear-gradient(135deg, rgba(83,199,255,.10), rgba(34,197,94,.08));
+    }
+
+    .tag-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .tag{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--text);
+      font-weight:700;
+      font-size:.95rem;
+    }
+
+    footer{padding:40px 0 60px}
+    .footer-box{
+      text-align:center;
+      color:var(--muted);
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      padding:24px;
+    }
+
+    .footer-box strong{
+      display:block;
+      color:var(--text);
+      margin-bottom:6px;
+    }
+
+    @media (max-width: 920px){
+      .hero,
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      header{padding:46px 0 34px}
+      .hero-box,
+      .info-box,
+      .card,
+      .cta-box{padding:22px}
+      .stats{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="wrap hero">
+      <div class="hero-box">
+        <div class="eyebrow">Transport & Logistics Simulation</div>
+        <h1>Build your own global freight empire.</h1>
+        <p>
+          Global Logistics Empire is a business and transport simulation game where you expand routes,
+          manage fleets, optimize deliveries, and grow from a small company into a worldwide logistics powerhouse.
+        </p>
+        <div class="buttons">
+          <a href="#features" class="btn btn-primary">Explore Features</a>
+          <a href="#platforms" class="btn btn-secondary">Available Platforms</a>
+        </div>
+      </div>
 
-  <h1>Global Logistics Empire</h1>
+      <div class="info-box">
+        <h2>Game Focus</h2>
+        <p>Designed for players who enjoy tycoon, transport, optimization, and long-term business growth.</p>
+        <div class="stats">
+          <div class="stat">
+            <span>Core theme</span>
+            <strong>Logistics strategy</strong>
+          </div>
+          <div class="stat">
+            <span>Gameplay</span>
+            <strong>Fleet management</strong>
+          </div>
+          <div class="stat">
+            <span>Progression</span>
+            <strong>Business expansion</strong>
+          </div>
+          <div class="stat">
+            <span>Style</span>
+            <strong>Tycoon simulation</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <p>
-    I am an amateur developer and this is the first game I am working on.
-    <strong>Global Logistics Empire</strong> is a manager-tycoon game where you start from almost nothing
-    &mdash; with just a small van &mdash; and work your way up to building a massive logistics empire.
-  </p>
+  <main>
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What the game offers</h2>
+          <p>Grow, optimize, and dominate the logistics market with systems focused on planning, efficiency, and expansion.</p>
+        </div>
 
-  <h2>Build Your Company</h2>
-  <p>
-    Expand your business by constructing a wide variety of buildings that improve your efficiency,
-    increase your capacity, and unlock further progression. Buildings are divided into four categories:
-    <strong>Economic</strong>, <strong>Logistics</strong>, <strong>Ecological</strong>, and <strong>Service</strong>.
-    Each category opens up new possibilities and helps you grow your empire faster.
-  </p>
+        <div class="cards">
+          <div class="card">
+            <div class="icon blue">🚚</div>
+            <h3>Fleet Growth</h3>
+            <p>Start small and gradually build a larger transport network with more vehicles, better routes, and increased capacity.</p>
+          </div>
 
-  <h2>Research &amp; Technology</h2>
-  <p>
-    Research plays a key role in your progress. Unlock upgrades and new capabilities across five research branches:
-    <strong>Efficiency</strong>, <strong>Transport Speed</strong>, <strong>Automation</strong>,
-    <strong>Safety</strong>, and <strong>Ecology</strong>. The deeper you research, the more powerful your company becomes.
-  </p>
+          <div class="card">
+            <div class="icon green">📦</div>
+            <h3>Cargo Management</h3>
+            <p>Handle shipments, assign resources, and keep deliveries moving smoothly across your growing business.</p>
+          </div>
 
-  <h2>Four Modes of Transport</h2>
-  <p>
-    You start with road transport only. As you progress, you gradually unlock three additional transport modes:
-    <strong>rail</strong>, <strong>sea</strong>, and <strong>air</strong>. Build and manage a multi-modal
-    transport network that spans the entire map.
-  </p>
+          <div class="card">
+            <div class="icon gold">🌍</div>
+            <h3>Empire Expansion</h3>
+            <p>Unlock new regions, improve profitability, and turn a local operation into a global logistics empire.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <h2>Wide Range of Cargo</h2>
-  <p>
-    Transport a huge variety of goods including electronics, consumer products, bulk materials,
-    liquid cargo, hazardous materials, and high-value shipments. Each cargo type brings its own
-    challenges and opportunities.
-  </p>
+    <section>
+      <div class="wrap cta-box">
+        <div class="section-head" style="text-align:left;max-width:none;margin:0 0 12px">
+          <h2 style="margin-bottom:8px">Built for tycoon players</h2>
+          <p>If you enjoy management games, route planning, efficiency upgrades, and watching your business grow, this game is for you.</p>
+        </div>
 
-  <h2>Available in 25 Languages</h2>
-  <p>The game is currently localized in 25 languages:</p>
-  <div class="languages">
-    <span class="lang-badge">English</span>
-    <span class="lang-badge">Czech</span>
-    <span class="lang-badge">Polish</span>
-    <span class="lang-badge">Hungarian</span>
-    <span class="lang-badge">Romanian</span>
-    <span class="lang-badge">German</span>
-    <span class="lang-badge">French</span>
-    <span class="lang-badge">Ukrainian</span>
-    <span class="lang-badge">Spanish</span>
-    <span class="lang-badge">Dutch</span>
-    <span class="lang-badge">Italian</span>
-    <span class="lang-badge">Portuguese (Brazil)</span>
-    <span class="lang-badge">Russian</span>
-    <span class="lang-badge">Turkish</span>
-    <span class="lang-badge">Indonesian</span>
-    <span class="lang-badge">Arabic</span>
-    <span class="lang-badge">Swedish</span>
-    <span class="lang-badge">Norwegian</span>
-    <span class="lang-badge">Danish</span>
-    <span class="lang-badge">Finnish</span>
-    <span class="lang-badge">Japanese</span>
-    <span class="lang-badge">Korean</span>
-    <span class="lang-badge">Hindi</span>
-    <span class="lang-badge">Pakistani</span>
-  </div>
+        <div class="tag-list">
+          <span class="tag">Transport routes</span>
+          <span class="tag">Business upgrades</span>
+          <span class="tag">Operational planning</span>
+          <span class="tag">Progressive expansion</span>
+          <span class="tag">Tycoon gameplay</span>
+        </div>
+      </div>
+    </section>
 
-  <h2>What&apos;s Coming Next</h2>
-  <div class="coming-soon">
-    <p>Development is actively ongoing. Planned and in-progress features include:</p>
-    <ul>
-      <li>More realistic world map</li>
-      <li>Combined contracts</li>
-      <li>Cooperative contract completion</li>
-      <li>Collaboration and interaction with other players</li>
-      <li>Online leaderboards</li>
-      <li>And many more improvements&hellip;</li>
-    </ul>
-  </div>
+    <section id="platforms">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Platforms</h2>
+          <p>This website works well as the official GitHub Pages landing page for the game, including future store links and promotion.</p>
+        </div>
 
-  <h2>Try It Yourself</h2>
-  <p>
-    Download the game and discover all the possibilities that await you.
-    Build your own logistics empire and see how far you can go.
-  </p>
+        <div class="cards">
+          <div class="card">
+            <div class="icon blue">📱</div>
+            <h3>Mobile Friendly</h3>
+            <p>The design is responsive and looks good on phones, tablets, and desktop screens.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon green">⚡</div>
+            <h3>Fast Loading</h3>
+            <p>Single-file structure keeps the page simple, lightweight, and easy to maintain on GitHub Pages.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon gold">🔗</div>
+            <h3>Store Ready</h3>
+            <p>You can later add Google Play and App Store buttons, screenshots, trailer links, or update notes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2026 Global Logistics Empire &mdash; Indie game by an amateur developer.</p>
+    <div class="wrap footer-box">
+      <strong>Global Logistics Empire</strong>
+      Official project website hosted on GitHub Pages.
+    </div>
   </footer>
-
 </body>
 </html>
