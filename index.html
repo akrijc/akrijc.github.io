@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Global Logistics Empire — Build a Worldwide Transport Tycoon</title>
   <meta name="description" content="Global Logistics Empire is a deep tycoon & logistics simulation. Manage trucks, trains, ships and planes, hire staff, research tech, build infrastructure and grow from a single garage to a global empire." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#08111f;
@@ -111,6 +114,62 @@
       background:linear-gradient(135deg, var(--primary), var(--primary-dark));
       color:#04111e;
     }
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(83,199,255,.45)}
+    .btn-secondary:hover{background:rgba(255,255,255,.10);transform:translateY(-2px)}
+
+    /* Google Play CTA */
+    .btn-play{
+      min-height:60px;
+      padding:0 28px;
+      border-radius:16px;
+      display:inline-flex;align-items:center;gap:14px;
+      background:linear-gradient(135deg,#22c55e 0%,#15803d 100%);
+      color:#fff;font-weight:800;font-size:1.05rem;
+      box-shadow:0 16px 40px rgba(34,197,94,.35), inset 0 1px 0 rgba(255,255,255,.2);
+      border:1px solid rgba(255,255,255,.15);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+      position:relative;overflow:hidden;
+    }
+    .btn-play:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 22px 60px rgba(34,197,94,.55);filter:brightness(1.08)}
+    .btn-play svg{width:28px;height:28px;flex-shrink:0}
+    .btn-play .play-labels{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
+    .btn-play .play-labels small{font-size:.7rem;font-weight:600;opacity:.85;letter-spacing:.08em;text-transform:uppercase}
+    .btn-play .play-labels span{font-size:1.15rem;font-weight:900;letter-spacing:-.01em}
+
+    /* Brand title */
+    .brand-title{
+      font-family:"Bebas Neue","Inter",sans-serif;
+      font-weight:900;
+      font-size:clamp(2.6rem, 6.2vw, 5.4rem);
+      line-height:.95;
+      letter-spacing:-.02em;
+      margin-bottom:18px;
+      text-transform:uppercase;
+    }
+    .brand-title .brand-main{
+      display:block;
+      background:linear-gradient(135deg,#eef4ff 0%,#abc0d8 60%, #53c7ff 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow:0 4px 30px rgba(83,199,255,.25);
+    }
+    .brand-title .brand-tycoon{
+      display:block;
+      font-size:.55em;
+      background:linear-gradient(135deg,#f59e0b,#ef4444);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      letter-spacing:.08em;
+      margin-top:.15em;
+    }
+
+    .badge-play{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 12px;border-radius:999px;
+      background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);
+      color:#22c55e;font-weight:700;font-size:.82rem;
+      margin-left:10px;
+    }
+    .badge-play::before{content:"";width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 12px #22c55e;animation:pulse 1.8s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
     .btn-secondary{
       background:rgba(255,255,255,.05);
@@ -316,17 +375,22 @@
     <div class="wrap">
       <div class="hero">
         <div class="hero-box">
-          <span class="eyebrow">🌍 Transport & Logistics Tycoon</span>
-          <h1>Build your own global freight empire.</h1>
+          <span class="eyebrow">🌍 Transport & Logistics Tycoon <span class="badge-play">Available on Google Play</span></span>
+          <h1 class="brand-title">
+            <span class="brand-main">Global Logistics Empire</span>
+            <span class="brand-tycoon">Tycoon</span>
+          </h1>
           <p class="lead">
-            <strong>Global Logistics Empire</strong> is a deep logistics & business simulation.
-            Start in a small garage with a single van and grow into a worldwide operator running
-            trucks, trains, cargo ships and aircraft across multiple continents. Hire staff, research
-            new tech, build depots, run contracts, and turn delivery routes into a profitable empire.
+            Build your worldwide freight empire — from a single van in a tiny garage to a global operator
+            commanding trucks, trains, cargo ships and aircraft across every continent. Hire staff, research tech,
+            build depots and turn delivery routes into a profit machine.
           </p>
           <div class="buttons">
-            <a href="#features" class="btn btn-primary">Explore Features</a>
-            <a href="#fleet" class="btn btn-secondary">See the Fleet</a>
+            <a href="https://play.google.com/store/apps/details?id=com.akrij23.globallogisticsempire" target="_blank" rel="noopener" class="btn-play" aria-label="Play on Google Play">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.7c-.4.4-.6 1-.6 1.8v17c0 .8.2 1.4.6 1.8l.1.1L13.4 12 3.7 1.6l-.1.1zm11.2 11.6l3.2 3.2-12.1 6.9c-.5.3-1 .3-1.5.1l10.4-10.2zM18.5 8.4c1 .6 1 2.1 0 2.6l-2.7 1.5-3.4-3.4 3.4-3.4 2.7 1.7zM4.3 1.2c.5-.2 1 -.2 1.5.1l12.1 6.9-3.2 3.2L4.3 1.2z"/></svg>
+              <span class="play-labels"><small>Get it on</small><span>Google Play</span></span>
+            </a>
+            <a href="#features" class="btn btn-secondary">Explore Features</a>
           </div>
         </div>
 
@@ -675,6 +739,12 @@
           <span class="tag">Tycoon gameplay</span>
           <span class="tag">Offline progress</span>
           <span class="tag">Cloud save</span>
+        </div>
+        <div style="margin-top:24px;display:flex;justify-content:center">
+          <a href="https://play.google.com/store/apps/details?id=com.akrij23.globallogisticsempire" target="_blank" rel="noopener" class="btn-play">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.7c-.4.4-.6 1-.6 1.8v17c0 .8.2 1.4.6 1.8l.1.1L13.4 12 3.7 1.6l-.1.1zm11.2 11.6l3.2 3.2-12.1 6.9c-.5.3-1 .3-1.5.1l10.4-10.2zM18.5 8.4c1 .6 1 2.1 0 2.6l-2.7 1.5-3.4-3.4 3.4-3.4 2.7 1.7z"/></svg>
+            <span class="play-labels"><small>Get it now on</small><span>Google Play</span></span>
+          </a>
         </div>
       </div>
     </div>
